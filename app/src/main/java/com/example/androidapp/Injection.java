@@ -1,23 +1,29 @@
 package com.example.androidapp;
 
-//Cette classe permet de me retourner des instances d'objets
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+
 public class Injection {
-    private static RestApiPokemon restApiPokemon;
+    private static RestApiMenus restApiMenus;
 
     //Singleton
-    public static RestApiPokemon getRestApi(){
-        if(restApiPokemon == null){
+    public static RestApiMenus getRestApi(){
+        if(restApiMenus == null){
             Gson gson = new GsonBuilder()
                     .setLenient()
                     .create();
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("https://pokeapi.co/")
+                    .baseUrl("http://api.menus.nypl.org/")
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
 
-            restApiPokemon = retrofit.create(RestApiPokemon.class);
+            restApiMenus = retrofit.create(RestApiMenus.class);
         }
-        return restApiPokemon;
+        return restApiMenus;
     }
 }
