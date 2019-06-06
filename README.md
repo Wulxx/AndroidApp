@@ -1,2 +1,3 @@
 # AndroidApp
 L'application ne se lance pas. Du moins, cette dernière ouvre une fenêtre qui se referme instantanément...
+Le but de cette dernière étant d'afficher, en utilisant l'API Menus, les menus disponibles en fonction des événements ainsi que des localisations.
