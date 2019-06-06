@@ -15,12 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+
     private List<Menus> values;
     private MainActivity mainActivity;
-    private int pos;
+    private int position;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
+        // each data item is just a string in this case
         public TextView txtHeader;
         public TextView txtFooter;
         public View layout;
@@ -33,24 +34,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
     }
 
-    /*public void add(int position, Menus item) {
+    public void add(int position, Menus item) {
         values.add(position, item);
         notifyItemInserted(position);
-    }*/
+    }
 
     public void remove(int position) {
         values.remove(position);
         notifyItemRemoved(position);
     }
 
-    public MyAdapter(List<Menus> values) {
-        this.values = values;
-    }
-    private static String SelectedMenus = "selected_menus";
-    public void infoDisplay(int pos){
-        Log.d("position", String.valueOf(pos));
+    private static final String SelectedMenus = "selected_menus";
+
+    public void infoDisplay(int position){
+        Log.d("position", String.valueOf(position));
         Intent info = new Intent(mainActivity, SecondActivity.class);
-        final Menus selectedMenus = values.get(pos);
+        final Menus selectedMenus = values.get(position);
         ArrayList<String> Menus= new ArrayList<>() ;
         Menus.add(selectedMenus.getName());
         Menus.add(selectedMenus.getSponsor());
@@ -62,41 +61,45 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         mainActivity.startActivity(info);
     }
 
+    // Provide a suitable constructor (depends on the kind of dataset)
     public MyAdapter(List<Menus> values, MainActivity mainActivity) {
         this.values = values;
         this.mainActivity = mainActivity;
     }
 
+    // Create new views (invoked by the layout manager)
     @Override
     public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // create a new view
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.row_layout, parent, false);
+        // set the view's size, margins, paddings and layout parameters
         ViewHolder vh = new ViewHolder(v);
         return vh;
+
     }
 
-
+    // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int pos) {
-        this.pos = pos;
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        this.position = position;
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        final Menus selectedMenus = values.get(pos);
+        final Menus selectedMenus = values.get(position);
         holder.txtHeader.setText(selectedMenus.getName());
 
         holder.txtFooter.setText("URL : " + selectedMenus.getId());
-        Log.d("URL", String.valueOf(pos));
+        Log.d("URL", String.valueOf(position));
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v){
-                infoDisplay(pos);
+            public void onClick(View v) {
+                infoDisplay(position);
             }
         });
     }
 
-    @Override
+    // Return the size of your dataset (invoked by the layout manager)
     public int getItemCount() {
         return values.size();
     }
-
 }
