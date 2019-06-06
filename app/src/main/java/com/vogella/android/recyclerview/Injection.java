@@ -1,4 +1,4 @@
-package com.example.androidapp;
+package com.vogella.android.recyclerview;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

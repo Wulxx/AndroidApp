@@ -1,4 +1,4 @@
-package com.example.androidapp.Model;
+package com.vogella.android.recyclerview.Model;
 import com.google.gson.annotations.SerializedName;
 
 public class Menus {

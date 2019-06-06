@@ -1,21 +1,21 @@
-package com.example.androidapp.View;
+package com.vogella.android.recyclerview.View;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.example.androidapp.Controller.MainController;
-import com.example.androidapp.Injection;
-import com.example.androidapp.Model.Menus;
+import com.vogella.android.recyclerview.Injection;
 import com.example.androidapp.R;
+import com.vogella.android.recyclerview.Controller.MainController;
+import com.vogella.android.recyclerview.Model.Menus;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.Adapter myAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
     private MainController controller;
@@ -28,13 +28,13 @@ public class MainActivity extends AppCompatActivity {
         controller.onCreate();
     }
 
-    public void showList(List<Menus> menusList) {
+    public void showList(List<Menus> MenusList) {
         recyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        mAdapter = new MyAdapter(menusList, this);
-        recyclerView.setAdapter(mAdapter);
+        myAdapter = new MyAdapter(MenusList, this);
+        recyclerView.setAdapter(myAdapter);
     }
 }

@@ -1,6 +1,6 @@
-package com.example.androidapp;
+package com.vogella.android.recyclerview;
 
-import com.example.androidapp.Model.Menus;
+import com.vogella.android.recyclerview.Model.Menus;
 
 import java.util.List;
 
